@@ -1,0 +1,12 @@
+<svg id="组_1" data-name="组 1" xmlns="http://www.w3.org/2000/svg" width="142" height="88" viewBox="0 0 142 88">
+  <defs>
+    <style>
+      .cls-1 {
+        fill: #c3ff28;
+        fill-rule: evenodd;
+      }
+    </style>
+  </defs>
+  <path id="多边形_1" data-name="多边形 1" class="cls-1" d="M841,1340q-0.221-29.355-44-29.5,43.781-.15,44-29.5,0.221,29.355,44,29.5Q841.219,1310.65,841,1340Z" transform="translate(-797 -1281)"/>
+  <path id="多边形_1_拷贝" data-name="多边形 1 拷贝" class="cls-1" d="M912,1369q-0.135-17.91-27-18,26.865-.09,27-18,0.135,17.91,27,18Q912.135,1351.09,912,1369Z" transform="translate(-797 -1281)"/>
+</svg>
