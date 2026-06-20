@@ -1,0 +1,95 @@
+.masonry-list {
+  width: 100%;
+  column-count: 5;
+  column-gap: 26px;
+}
+
+.work-card.masonry-work-card {
+  position: relative;
+  display: block;
+  width: 100%;
+  margin: 0 0 26px;
+  padding: 6px;
+  overflow: visible;
+  break-inside: avoid;
+  border: 0;
+  background: transparent;
+  box-shadow: none;
+  opacity: 0;
+  transform: translate3d(0, 96px, 0) scale(0.965);
+  will-change: opacity, transform;
+}
+
+.masonry-visible .work-card.masonry-work-card {
+  animation: masonry-rise 1.05s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+  animation-delay: var(--masonry-delay, 0ms);
+}
+
+.work-card.masonry-work-card::after {
+  content: none;
+}
+
+.work-card.masonry-work-card .masonry-img {
+  position: relative;
+  display: block;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  border-radius: 10px;
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: top center;
+  box-shadow: 0 10px 50px -10px rgba(0, 0, 0, 0.32);
+  transition:
+    border-color 0.3s ease,
+    box-shadow 0.3s ease,
+    filter 0.3s ease,
+    transform 0.3s ease;
+}
+
+.work-card.masonry-work-card:hover .masonry-img,
+.work-card.masonry-work-card:focus-visible .masonry-img {
+  border-color: rgba(195, 255, 40, 0.48);
+  box-shadow:
+    0 20px 70px -18px rgba(0, 0, 0, 0.48),
+    0 0 42px rgba(195, 255, 40, 0.12);
+  filter: saturate(1.12) contrast(1.06);
+  transform: scale(var(--hover-scale, 0.95));
+}
+
+.work-card.masonry-work-card:focus-visible {
+  outline: 2px solid #c3ff28;
+  outline-offset: 5px;
+}
+
+@keyframes masonry-rise {
+  to {
+    opacity: 1;
+    transform: translate3d(0, 0, 0) scale(1);
+  }
+}
+
+@media (max-width: 1499px) {
+  .masonry-list {
+    column-count: 4;
+  }
+}
+
+@media (max-width: 999px) {
+  .masonry-list {
+    column-count: 3;
+  }
+}
+
+@media (max-width: 699px) {
+  .masonry-list {
+    column-count: 2;
+  }
+}
+
+@media (max-width: 419px) {
+  .masonry-list {
+    column-count: 1;
+  }
+}
