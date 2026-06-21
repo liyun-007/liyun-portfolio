@@ -1190,9 +1190,10 @@ a {
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  max-width: min(250px, 62%);
-  min-height: 42px;
-  padding: 0 22px;
+  min-width: 128px;
+  max-width: min(310px, 74%);
+  min-height: 44px;
+  padding: 0 30px;
   color: #050606;
   border-radius: 999px;
   background: rgba(248, 246, 241, 0.92);
@@ -1209,40 +1210,40 @@ a {
 }
 
 .strength-keyword-1 {
-  left: 0;
+  left: 4%;
   right: auto;
-  top: 0;
+  top: 2px;
   --keyword-rotate: -5deg;
 }
 
 .strength-keyword-2 {
   left: auto;
-  right: 0;
-  top: 34px;
+  right: 8%;
+  top: 32px;
   color: #f8f6f1;
   background: #050606;
   --keyword-rotate: 6deg;
 }
 
 .strength-keyword-3 {
-  left: 18%;
+  left: 32%;
   right: auto;
-  top: 82px;
+  top: 76px;
   background: rgba(214, 255, 92, 0.92);
   --keyword-rotate: -2deg;
 }
 
 .strength-keyword-4 {
   left: auto;
-  right: 22%;
-  top: 120px;
+  right: 31%;
+  top: 118px;
   --keyword-rotate: 4deg;
 }
 
 .strength-keyword-5 {
-  left: 3%;
+  left: 14%;
   right: auto;
-  top: 138px;
+  top: 134px;
   color: #f8f6f1;
   background: #050606;
   --keyword-rotate: -5deg;
@@ -1259,36 +1260,45 @@ a {
 .strength-card-3 .strength-keyword,
 .strength-card-4 .strength-keyword,
 .strength-card-5 .strength-keyword {
-  max-width: min(190px, 68%);
-  min-height: 38px;
-  padding: 0 17px;
+  min-width: 112px;
+  max-width: min(230px, 78%);
+  min-height: 40px;
+  padding: 0 22px;
   font-size: 13px;
+}
+
+.strength-card-3 .strength-keyword-1,
+.strength-card-4 .strength-keyword-1,
+.strength-card-5 .strength-keyword-1 {
+  left: 2%;
 }
 
 .strength-card-3 .strength-keyword-2,
 .strength-card-4 .strength-keyword-2,
 .strength-card-5 .strength-keyword-2 {
+  right: 4%;
   top: 30px;
 }
 
 .strength-card-3 .strength-keyword-3,
 .strength-card-4 .strength-keyword-3,
 .strength-card-5 .strength-keyword-3 {
-  left: 10%;
+  left: 28%;
   top: 72px;
 }
 
 .strength-card-3 .strength-keyword-4,
 .strength-card-4 .strength-keyword-4,
 .strength-card-5 .strength-keyword-4 {
-  right: 8%;
-  top: 110px;
+  right: 22%;
+  top: 108px;
 }
 
 .strength-card-3 .strength-keyword-5,
 .strength-card-4 .strength-keyword-5,
 .strength-card-5 .strength-keyword-5 {
-  top: 140px;
+  left: 8%;
+  top: 138px;
 }
 
 .strength-shape {
