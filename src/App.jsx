@@ -98,28 +98,35 @@ const strengths = [
     icon: MousePointer2,
     title: '界面体验落地',
     text: '从流程梳理、原型、高保真到开发还原，能够把业务需求转化为清晰可执行的设计方案。',
+    keywords: ['流程梳理', '原型设计', '高保真输出', '开发还原', '体验落地'],
   },
   {
     icon: ChartNoAxesCombined,
     title: '复杂信息组织',
     text: '熟悉后台系统、数据大屏、报表和审批场景，擅长在复杂信息中建立优先级与视觉秩序。',
+    keywords: ['后台系统', '数据大屏', '报表设计', '审批流程', '视觉秩序'],
   },
   {
     icon: Sparkles,
     title: '视觉与品牌综合能力',
     text: '兼具 UI、电商视觉、平面排版和品牌设计经验，能在一致风格下处理多终端设计资产。',
+    keywords: ['UI 设计', '电商视觉', '平面排版', '品牌设计', '多端资产'],
   },
   {
     icon: BriefcaseBusiness,
     title: '跨团队协作',
     text: '有设计管理和新人培训经历，能与产品、开发及业务团队沟通推进版本迭代和体验优化。',
+    keywords: ['产品沟通', '开发协作', '版本迭代', '新人培训', '体验优化'],
   },
   {
     icon: CircleCheck,
     title: '完整项目主导能力',
     text: '能够从需求沟通、信息架构、视觉规范到交付验收完整推进项目，保证设计质量与落地效率。',
+    keywords: ['需求沟通', '信息架构', '视觉规范', '交付验收', '落地效率'],
   },
 ];
+
+const strengthKeywordMap = Object.fromEntries(strengths.map((item) => [item.title, item.keywords]));
 
 const profileFields = [
   { label: '当前身份', value: 'UI 设计师' },
@@ -190,6 +197,7 @@ const workMasonry = [
 const defaultPortfolioContent = {
   heroCardVersion: 2,
   projectsVersion: 2,
+  strengthsVersion: 2,
   hero: {
     video: '/assets/hero-video-02.mp4',
     poster: '/assets/hero-video-02-poster.jpg',
@@ -226,6 +234,7 @@ const defaultPortfolioContent = {
       icon: ['mouse', 'chart', 'sparkles', 'briefcase', 'check'][index] || 'check',
       title: item.title,
       text: item.text,
+      keywords: item.keywords,
     })),
   },
   contact: {
@@ -259,12 +268,17 @@ function mergePortfolioContent(savedContent) {
     savedContent.projectsVersion !== defaultPortfolioContent.projectsVersion ||
     !savedContent.projects ||
     !Array.isArray(savedContent.projects.items);
+  const shouldUseLatestStrengths =
+    savedContent.strengthsVersion !== defaultPortfolioContent.strengthsVersion ||
+    !savedContent.strengths ||
+    !Array.isArray(savedContent.strengths.items);
 
   return {
     ...defaultPortfolioContent,
     ...savedContent,
     heroCardVersion: defaultPortfolioContent.heroCardVersion,
     projectsVersion: defaultPortfolioContent.projectsVersion,
+    strengthsVersion: defaultPortfolioContent.strengthsVersion,
     hero: { ...defaultPortfolioContent.hero, ...savedHero },
     experience: { ...defaultPortfolioContent.experience, ...savedContent.experience },
     heroGallery: shouldUseLatestHeroCards ? defaultPortfolioContent.heroGallery : savedContent.heroGallery,
@@ -273,7 +287,11 @@ function mergePortfolioContent(savedContent) {
       ...savedContent.projects,
       items: shouldUseLatestProjects ? defaultPortfolioContent.projects.items : savedContent.projects.items,
     },
-    strengths: { ...defaultPortfolioContent.strengths, ...savedContent.strengths },
+    strengths: {
+      ...defaultPortfolioContent.strengths,
+      ...savedContent.strengths,
+      items: shouldUseLatestStrengths ? defaultPortfolioContent.strengths.items : savedContent.strengths.items,
+    },
     contact: { ...defaultPortfolioContent.contact, ...savedContent.contact },
   };
 }
@@ -290,8 +308,16 @@ function savePortfolioContent(content) {
   window.localStorage.setItem(STORAGE_KEY, JSON.stringify(content));
 }
 
-function getStrengthKeywords(text) {
-  return text
+function getStrengthKeywords(item) {
+  if (Array.isArray(item.keywords) && item.keywords.length > 0) {
+    return item.keywords.map((keyword) => String(keyword).trim()).filter(Boolean);
+  }
+
+  if (strengthKeywordMap[item.title]) {
+    return strengthKeywordMap[item.title];
+  }
+
+  return item.text
     .split(/[锛屻€傘€侊紱;,.]/)
     .map((item) => item.trim())
     .filter(Boolean);
@@ -1296,7 +1322,7 @@ function App() {
           <div className="strength-grid">
             {siteContent.strengths.items.map((item, index) => {
               const Icon = iconMap[item.icon] || CircleCheck;
-              const keywords = getStrengthKeywords(item.text);
+              const keywords = getStrengthKeywords(item);
               return (
                 <article
                   className={`strength-card strength-card-${index + 1}`}
